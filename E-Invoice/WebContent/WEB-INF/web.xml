@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4"
+	xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>E-Invoice</display-name>
+
+	<filter>
+		<filter-name>InternationalizationFilter</filter-name>
+		<filter-class>pl.arturkb.EInvoice.Filter.InternationalizationFilter</filter-class>
+		<init-param>
+			<param-name>lang</param-name>
+			<param-value>pl</param-value>
+		</init-param>
+	</filter>
+
+	<filter>
+		<filter-name>InternationalizationFilterSecure</filter-name>
+		<filter-class>pl.arturkb.EInvoice.Filter.InternationalizationFilterSecure</filter-class>
+		<init-param>
+			<param-name>lang</param-name>
+			<param-value>pl</param-value>
+		</init-param>
+	</filter>
+
+	<filter>
+		<filter-name>LoginFilter</filter-name>
+		<filter-class>pl.arturkb.EInvoice.Filter.LoginFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>InternationalizationFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>InternationalizationFilterSecure</filter-name>
+		<url-pattern>*.sec</url-pattern>
+	</filter-mapping>
+
+
+	<filter-mapping>
+		<filter-name>LoginFilter</filter-name>
+		<url-pattern>*.sec</url-pattern>
+	</filter-mapping>
+
+	<servlet>
+		<servlet-name>log4j-init</servlet-name>
+		<servlet-class>pl.arturkb.EInvoice.Controller.Log4jInit</servlet-class>
+		<init-param>
+			<param-name>log4j-properties-location</param-name>
+			<param-value>WEB-INF/log4j.properties</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet>
+		<description>
+		Creates new customer</description>
+		<display-name>NewCustomer</display-name>
+		<servlet-name>NewCustomer</servlet-name>
+		<servlet-class>pl.arturkb.EInvoice.Controller.NewCustomer</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NewCustomer</servlet-name>
+		<url-pattern>/customer/add.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<description>
+		Login to the system</description>
+		<display-name>Login</display-name>
+		<servlet-name>Login</servlet-name>
+		<servlet-class>pl.arturkb.EInvoice.Controller.User.Login</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		Log out for the user</description>
+		<display-name>Logout</display-name>
+		<servlet-name>Logout</servlet-name>
+		<servlet-class>pl.arturkb.EInvoice.Controller.User.Logout</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		The main container for Dashboard</description>
+		<display-name>Index</display-name>
+		<servlet-name>Index</servlet-name>
+		<servlet-class>pl.arturkb.EInvoice.Controller.Dashboard.Index</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>ChangeLanguage</display-name>
+		<servlet-name>ChangeLanguage</servlet-name>
+		<servlet-class>pl.arturkb.EInvoice.Controller.ChangeLanguage</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		Edit the user profil</description>
+		<display-name>Edit</display-name>
+		<servlet-name>Edit</servlet-name>
+		<servlet-class>pl.arturkb.EInvoice.Controller.User.Edit</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Login</servlet-name>
+		<url-pattern>/user/login.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Logout</servlet-name>
+		<url-pattern>/user/logout.sec</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Index</servlet-name>
+		<url-pattern>/dashboard/index.sec</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ChangeLanguage</servlet-name>
+		<url-pattern>/changelanguage.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Edit</servlet-name>
+		<url-pattern>/user/edit.sec</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>
