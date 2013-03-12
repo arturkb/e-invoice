@@ -4,6 +4,16 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 	<display-name>E-Invoice</display-name>
 
+	<servlet>
+		<servlet-name>log4j-init</servlet-name>
+		<servlet-class>pl.arturkb.EInvoice.Controller.Log4jInit</servlet-class>
+		<init-param>
+			<param-name>log4j-properties-location</param-name>
+			<param-value>WEB-INF/log4j.properties</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
 	<filter>
 		<filter-name>InternationalizationFilter</filter-name>
 		<filter-class>pl.arturkb.EInvoice.Filter.InternationalizationFilter</filter-class>
@@ -42,16 +52,6 @@
 		<filter-name>LoginFilter</filter-name>
 		<url-pattern>*.sec</url-pattern>
 	</filter-mapping>
-
-	<servlet>
-		<servlet-name>log4j-init</servlet-name>
-		<servlet-class>pl.arturkb.EInvoice.Controller.Log4jInit</servlet-class>
-		<init-param>
-			<param-name>log4j-properties-location</param-name>
-			<param-value>WEB-INF/log4j.properties</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
 
 	<servlet>
 		<description>
@@ -100,6 +100,7 @@
 		<servlet-name>Edit</servlet-name>
 		<servlet-class>pl.arturkb.EInvoice.Controller.User.Edit</servlet-class>
 	</servlet>
+
 	<servlet-mapping>
 		<servlet-name>Login</servlet-name>
 		<url-pattern>/user/login.do</url-pattern>

@@ -4,6 +4,7 @@
 package pl.arturkb.EInvoice.Filter;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -14,7 +15,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
+
 import pl.arturkb.EInvoice.Internationalization.English;
 
 /**
@@ -39,6 +41,7 @@ import pl.arturkb.EInvoice.Internationalization.English;
 public class InternationalizationFilter implements Filter {
 
 	private FilterConfig filterConfig = null;
+	private static Logger logger = Logger.getLogger(InternationalizationFilter.class);
 
 	/*
 	 * (non-Javadoc)
@@ -60,16 +63,22 @@ public class InternationalizationFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
-
+				
 		HttpServletRequest req = (HttpServletRequest) request;
+		logger.debug("InternationalizationFilter");
 		
 		//Checking session object if not exists then set up default language 
 		//to English
 		HttpSession session = req.getSession(true);
-		if (session.isNew() || session.getAttribute("lang") == null) {
-			session.setAttribute("lang", new English().init().getMsg());
+		if (session.getAttribute("lang") == null) {
+			session.setAttribute("lang", new English().init());
+			logger.debug("Setting session lang for default language ENGLISH");
+		}else {
+			logger.debug("Session is not new or it is set up before");
+			HashMap<String, String> lang_debug = (HashMap<String, String>) session.getAttribute("lang");
+			logger.debug("Lang session =" +lang_debug);
 		}
-		chain.doFilter(req, response);
+		chain.doFilter(request, response);
 
 	}
 

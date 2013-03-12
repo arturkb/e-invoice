@@ -85,8 +85,7 @@ public class ServletsUtils {
 		if (session.getAttribute("lang") instanceof Language) {
 			return ((Language) session.getAttribute("lang")).getMsg();
 		}
-		return new HashMap<String, String>();
-		
+		return new HashMap<String, String>();		
 	}
 
 	/*

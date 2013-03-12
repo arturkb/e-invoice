@@ -42,7 +42,7 @@ import pl.arturkb.EInvoice.Utils.ServletsUtils;
 public class Login extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private static Logger logger = Logger.getLogger(Login.class.getName());
+	private static Logger logger = Logger.getLogger(Login.class);
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -57,7 +57,8 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		logger.error("Error encountered");
+		
+		logger.debug("GET request for LOGIN");
 		View view = new View();
 
 		HashMap<String, String> lang = ServletsUtils.getLang(request);
@@ -65,6 +66,14 @@ public class Login extends HttpServlet {
 
 		// Alert-info
 		Alert alert = new InfoAlert();
+		
+		//Debugging info 
+		if(lang.size()==0) {
+			logger.error("Missing language hashMap, somthing went wrong!");
+		}else {
+			logger.debug("Language hashMap ok size =" + lang.size());
+		}
+
 		alert.setMsg(lang.get("Please_login_with_your_Username_and_Password."));
 
 		view.setViewAdress("/WEB-INF/User/loginView.jsp");

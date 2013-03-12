@@ -1,6 +1,6 @@
 			<div class="row-fluid">
 				<div class="well span5 center login-box">
-					${ alert.tag }
+					${alert.tag}
 					<form class="form-horizontal" action="/E-Invoice/user/login.do" method="POST">
 						<fieldset>
 							<div class="input-prepend" title=${lang["Username"]} data-rel="tooltip">
