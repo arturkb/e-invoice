@@ -15,8 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import pl.arturkb.EInvoice.Internationalization.English;
-import pl.arturkb.EInvoice.Internationalization.Polish;
+import pl.arturkb.EInvoice.Internationalization.EnglishLang;
 
 /**
  * 
@@ -68,7 +67,7 @@ public class InternationalizationFilterSecure implements Filter {
 		// to English
 		HttpSession session = req.getSession(true);
 		if (session.isNew() || session.getAttribute("lang") == null) {
-			session.setAttribute("lang", new English().init().getMsg());
+			session.setAttribute("lang", EnglishLang.getMsg());
 		}
 		chain.doFilter(req, response);
 	}

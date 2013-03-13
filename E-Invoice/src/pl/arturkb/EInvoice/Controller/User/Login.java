@@ -61,19 +61,11 @@ public class Login extends HttpServlet {
 		logger.debug("GET request for LOGIN");
 		View view = new View();
 
-		HashMap<String, String> lang = ServletsUtils.getLang(request);
+		HashMap<String, String> lang = ServletsUtils.getLangMsg(request);
 		String template = "/WEB-INF/Template/loginWindow.jsp";
 
 		// Alert-info
 		Alert alert = new InfoAlert();
-		
-		//Debugging info 
-		if(lang.size()==0) {
-			logger.error("Missing language hashMap, somthing went wrong!");
-		}else {
-			logger.debug("Language hashMap ok size =" + lang.size());
-		}
-
 		alert.setMsg(lang.get("Please_login_with_your_Username_and_Password."));
 
 		view.setViewAdress("/WEB-INF/User/loginView.jsp");
@@ -91,7 +83,7 @@ public class Login extends HttpServlet {
 			IOException {
 		View view = new View();
 
-		HashMap<String, String> lang = ServletsUtils.getLang(request);
+		HashMap<String, String> lang = ServletsUtils.getLangMsg(request);
 		String template = "/WEB-INF/Template/loginWindow.jsp";
 
 		// Alert-info

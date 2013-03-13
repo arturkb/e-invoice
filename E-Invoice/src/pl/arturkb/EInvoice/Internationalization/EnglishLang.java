@@ -3,41 +3,22 @@
  */
 package pl.arturkb.EInvoice.Internationalization;
 
+import java.util.HashMap;
+
 /**
- * 
- * TODO comments
- * 
- * Copyright 2013 Artur Barczysnki http://www.arturkb.pl
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
- * 
- * http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
+ * @author artur
  * 
  */
-public class English extends Language {
+public class EnglishLang {
 
-	public English() {
-		super();
+	private static HashMap<String, String> msg = new HashMap<String, String>();
+
+	public static HashMap<String, String> getMsg() {
+		return msg;
 	}
 
-	public English init() {
-		userLoginControllerMsg();
-		languages();
-		navBar();
-		userEdit();
-		checkMail();
-		return this;
-	}
-
-	private void navBar() {
+	static {
+		// Navigation bar part
 		msg.put("Bookkeeping", "Bookkeeping");
 		msg.put("Sale", "Sale");
 		msg.put("Purchases", "Purchases");
@@ -47,19 +28,16 @@ public class English extends Language {
 		msg.put("E-Invoice", "E-Invoice");
 		msg.put("Profile", "Profile");
 		msg.put("Logout", "Logout");
-	}
-
-	private void languages() {
+		
+		//Languages
 		msg.put("polish", "Polish");
 		msg.put("english", "English");
-	}
-
-	private void checkMail() {
+		
+		//Check mail
 		msg.put("checkMail.Please_correct_the_error", "Please correct the error");
 		msg.put("checkMaill,Please_fill_out_this_field", "Please fill out this field");
-	}
-
-	private void userEdit() {
+		
+		//User Edit
 		msg.put("UserEdit.Title", "Edit profile");
 		msg.put("UserEdit.Username", "Username:");
 		msg.put("UserEdit.Password", "Password:");
@@ -68,9 +46,8 @@ public class English extends Language {
 		msg.put("UserEdit.PasswordRepeat", "Repeat password:");
 		msg.put("UserEdit.Save_changes", "Save changes");
 		msg.put("UserEdit.Cancle", "Cancle");
-	}
 
-	private void userLoginControllerMsg() {
+		//User login screen
 		msg.put("login", "Login");
 		msg.put("logout", "Logout");
 		msg.put("Welcome_to_E-Invoice", "Welcome to E-Invoice");
@@ -82,6 +59,7 @@ public class English extends Language {
 		msg.put("Username", "\"Username\"");
 		msg.put("Password", "\"Password\"");
 		msg.put("change", "Change");
+
 	}
 
 }

@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import pl.arturkb.EInvoice.Internationalization.English;
-import pl.arturkb.EInvoice.Internationalization.Polish;
+import pl.arturkb.EInvoice.Internationalization.EnglishLang;
+import pl.arturkb.EInvoice.Internationalization.PolishLang;
 
 /**
  * Copyright 2013 Artur Barczysnki http://www.arturkb.pl
@@ -46,10 +46,10 @@ public class ChangeLanguage extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		if (request.getParameter("lang") != null) {
 			if (request.getParameter("lang").equals("pl")) {
-				session.setAttribute("langObj", new Polish().init());
+				session.setAttribute("lang", PolishLang.getMsg());
 			}
 			if (request.getParameter("lang").equals("en")) {
-				session.setAttribute("langObj", new English().init());
+				session.setAttribute("lang", EnglishLang.getMsg());
 			}
 		}
 		response.sendRedirect("/E-Invoice/dashboard/index.sec");

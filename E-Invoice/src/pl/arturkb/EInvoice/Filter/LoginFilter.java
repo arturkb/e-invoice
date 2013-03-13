@@ -14,8 +14,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import pl.arturkb.EInvoice.Internationalization.Polish;
 import pl.arturkb.EInvoice.Beans.Model.User;
 
 /**

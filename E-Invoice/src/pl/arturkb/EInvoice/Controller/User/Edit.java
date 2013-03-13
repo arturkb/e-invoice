@@ -43,7 +43,7 @@ public class Edit extends HttpServlet {
 			throws ServletException, IOException {
 		View view = new View();
 
-		HashMap<String, String> lang = ServletsUtils.getLang(request);
+		HashMap<String, String> lang = ServletsUtils.getLangMsg(request);
 		String template = "/WEB-INF/Template/mainWindow.jsp";
 
 		view.setViewAdress("/WEB-INF/User/editView.jsp");

@@ -31,8 +31,8 @@
 				<div class="well span5 center">
 					<form class="form-inline" action="/E-Invoice/changelanguage.do" method="GET">
 							<select name="lang">
-								<option value="pl">${lang["polish"]}</option>
 								<option value="en">${lang["english"]}</option>
+								<option value="pl">${lang["polish"]}</option>
 							</select>
 						<button type="submit" class="btn">${lang["change"]}</button>
 					</form>

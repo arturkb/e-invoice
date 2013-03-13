@@ -54,7 +54,7 @@ public class Index extends HttpServlet {
 			IOException {
 		View view = new View();
 
-		HashMap<String, String> lang = ServletsUtils.getLang(request);
+		HashMap<String, String> lang = ServletsUtils.getLangMsg(request);
 		String template = "/WEB-INF/Template/mainDashboardWindow.jsp";
 
 		view.setViewAdress("/WEB-INF/Dashboard/indexView.jsp");

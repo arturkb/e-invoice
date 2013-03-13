@@ -16,8 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
-
-import pl.arturkb.EInvoice.Internationalization.English;
+import pl.arturkb.EInvoice.Internationalization.EnglishLang;
 
 /**
  * 
@@ -65,18 +64,15 @@ public class InternationalizationFilter implements Filter {
 			FilterChain chain) throws IOException, ServletException {
 				
 		HttpServletRequest req = (HttpServletRequest) request;
-		logger.debug("InternationalizationFilter");
 		
 		//Checking session object if not exists then set up default language 
 		//to English
 		HttpSession session = req.getSession(true);
 		if (session.getAttribute("lang") == null) {
-			session.setAttribute("lang", new English().init());
+			session.setAttribute("lang", EnglishLang.getMsg());
 			logger.debug("Setting session lang for default language ENGLISH");
 		}else {
 			logger.debug("Session is not new or it is set up before");
-			HashMap<String, String> lang_debug = (HashMap<String, String>) session.getAttribute("lang");
-			logger.debug("Lang session =" +lang_debug);
 		}
 		chain.doFilter(request, response);
 

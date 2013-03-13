@@ -8,7 +8,7 @@ import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import pl.arturkb.EInvoice.Internationalization.Language;
+import org.apache.log4j.Logger;
 import pl.arturkb.EInvoice.Beans.*;
 
 /**
@@ -31,6 +31,8 @@ import pl.arturkb.EInvoice.Beans.*;
  * 
  */
 public class ServletsUtils {
+	private static Logger logger = Logger
+			.getLogger(ServletsUtils.class);
 
 	static private HttpServletRequest prepareCheckEmail(
 			HttpServletRequest request, String cssClass, String valMsg) {
@@ -39,7 +41,7 @@ public class ServletsUtils {
 
 		view.getCssClasses().put("email", cssClass);
 		sb.append("<span class=\"help-inline\">");
-		sb.append(ServletsUtils.prepareLanguage(request).get(valMsg));
+		sb.append(ServletsUtils.getLangMsg(request).get(valMsg));
 		sb.append("</span>\n");
 		view.getValMsg().put("email", sb.toString());
 		request.setAttribute("view", view);
@@ -54,11 +56,14 @@ public class ServletsUtils {
 	 */
 	static public HttpServletRequest checkEmail(HttpServletRequest request) {
 		if (request.getParameter("email") == null) {
-			request = prepareCheckEmail(request, "error", "checkMaill,Please_fill_out_this_field");
+			request = prepareCheckEmail(request, "error",
+					"checkMaill,Please_fill_out_this_field");
 			request.setAttribute("checkEmail", "false");
 			return request;
-		} if(request.getParameter("email").equals("")) {
-			request = prepareCheckEmail(request, "error", "checkMaill,Please_fill_out_this_field");
+		}
+		if (request.getParameter("email").equals("")) {
+			request = prepareCheckEmail(request, "error",
+					"checkMaill,Please_fill_out_this_field");
 			request.setAttribute("checkEmail", "false");
 			return request;
 		}
@@ -74,28 +79,18 @@ public class ServletsUtils {
 		}
 
 	}
-	
-	/**
-	 * 
-	 * @param request
-	 * @return
-	 */
-	static public HashMap<String, String> getLang( HttpServletRequest request ) {
-		HttpSession session = request.getSession(true);
-		if (session.getAttribute("lang") instanceof Language) {
-			return ((Language) session.getAttribute("lang")).getMsg();
-		}
-		return new HashMap<String, String>();		
-	}
 
-	/*
-	 * We prepare language object with translation
+	/**
+	 * Gets language object from the session and return the hash map with translation
+	 * @param request
+	 * @return HashMap with translation
 	 */
-	static private HashMap<String, String> prepareLanguage(
-			HttpServletRequest request) {
+	static public HashMap<String, String> getLangMsg(HttpServletRequest request) {
 		HttpSession session = request.getSession(true);
-		if (session.getAttribute("langObj") instanceof Language) {
-			return ((Language) session.getAttribute("langObj")).getMsg();
+		if (session.getAttribute("lang") != null) {
+			return ((HashMap<String, String>) session.getAttribute("lang"));
+		} else {
+			logger.error("Language object not exists, returning empty HashMap");
 		}
 		return new HashMap<String, String>();
 	}
