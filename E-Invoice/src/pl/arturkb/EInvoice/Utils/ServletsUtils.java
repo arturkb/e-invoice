@@ -71,10 +71,16 @@ public class ServletsUtils {
 		return request;
 	}
 
+	/**
+	 * Replace null with empty string
+	 * @param str
+	 * @return if str equals null then returns empty string ""
+	 */
 	static public String replaceNullWithEmptyString(String str) {
 		if (str == null) {
 			return new String("");
 		} else {
+			logger.debug("Parameter str equals null, returning empty string");
 			return str;
 		}
 

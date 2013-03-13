@@ -108,8 +108,11 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		logger.debug("POST request for LOGIN");
+		
 		try {
 			// Begin unit of work
+			logger.info("Hibernate begin transaction");
 			HibernateUtil.getSessionFactory().getCurrentSession()
 					.beginTransaction();
 			// Process request and render page...

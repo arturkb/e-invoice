@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import org.apache.log4j.Logger;
 import pl.arturkb.EInvoice.Internationalization.EnglishLang;
 import pl.arturkb.EInvoice.Internationalization.PolishLang;
 
@@ -29,6 +29,7 @@ import pl.arturkb.EInvoice.Internationalization.PolishLang;
  */
 public class ChangeLanguage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static Logger logger = Logger.getLogger(ChangeLanguage.class);
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -38,6 +39,8 @@ public class ChangeLanguage extends HttpServlet {
 	}
 
 	/**
+	 * Change language which is save in the session, change will be made on
+	 * parameter lang from request
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
@@ -47,12 +50,14 @@ public class ChangeLanguage extends HttpServlet {
 		if (request.getParameter("lang") != null) {
 			if (request.getParameter("lang").equals("pl")) {
 				session.setAttribute("lang", PolishLang.getMsg());
+				logger.debug("Changing language to Polish");
 			}
 			if (request.getParameter("lang").equals("en")) {
 				session.setAttribute("lang", EnglishLang.getMsg());
+				logger.debug("Changing language to English");
 			}
 		}
-		response.sendRedirect("/E-Invoice/dashboard/index.sec");
+		response.sendRedirect("/E-Invoice/user/login.do");
 	}
 
 	/**
