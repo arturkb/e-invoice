@@ -16,7 +16,7 @@ public class PolishLang {
 		msg.put("english", "Angielski");
 		
 		
-		//User login screen
+		//User login screen login.do
 		msg.put("login", "Logowanie");
 		msg.put("logout", "Wylogowanie");
 		msg.put("Welcome_to_E-Invoice", "Witamy w E-Fakturze");
