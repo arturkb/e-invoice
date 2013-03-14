@@ -61,6 +61,34 @@ public class ServletsUtilsTest {
 		String fixture = "test";
 		assertEquals(fixture, ServletsUtils.replaceNullWithEmptyString("test"));
 	}
+	
+	/**
+	 * This test assert request with lang = non empty HashMap then should return this  
+	 * HashMap
+	 * Test method for
+	 * {@link pl.arturkb.EInvoice.Utils.ServletsUtils#getLangMsg(javax.servlet.http.HttpServletRequest)}
+	 * .
+	 */
+	@Test
+	public final void testGetLangMsg() {
+		
+		HashMap<String, String> fixture = new HashMap<String, String>();
+		fixture.put("k1", "v1");
+		fixture.put("k2", "v2");
+		
+		HttpServletRequest request = mock(HttpServletRequest.class);
+		HttpSession session = mock(HttpSession.class);
+		
+		//Preparing session with lang = null
+		when(session.getAttribute("lang")).thenReturn(fixture);
+		
+		//Preparing request with session like above
+		when(request.getSession(true)).thenReturn(session);
+		
+		//now we run assert
+		assertEquals(ServletsUtils.getLangMsg(request), fixture);
+		
+	}
 
 	/**
 	 * This test assert request with lang = null then should return empty 
@@ -70,7 +98,7 @@ public class ServletsUtilsTest {
 	 * .
 	 */
 	@Test
-	public final void testGetLangMsg() {
+	public final void testGetLangMsgWithEmptyHashMap() {
 		
 		HashMap<String, String> fixture = new HashMap<String, String>();
 		
