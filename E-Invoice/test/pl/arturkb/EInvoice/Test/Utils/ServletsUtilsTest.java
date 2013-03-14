@@ -5,6 +5,13 @@ package pl.arturkb.EInvoice.Test.Utils;
 
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import static org.mockito.Mockito.*;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,7 +19,7 @@ import pl.arturkb.EInvoice.Utils.ServletsUtils;
 
 /**
  * @author artur
- *
+ * 
  */
 public class ServletsUtilsTest {
 
@@ -24,7 +31,9 @@ public class ServletsUtilsTest {
 	}
 
 	/**
-	 * Test method for {@link pl.arturkb.EInvoice.Utils.ServletsUtils#checkEmail(javax.servlet.http.HttpServletRequest)}.
+	 * Test method for
+	 * {@link pl.arturkb.EInvoice.Utils.ServletsUtils#checkEmail(javax.servlet.http.HttpServletRequest)}
+	 * .
 	 */
 	@Test
 	public final void testCheckEmail() {
@@ -32,16 +41,20 @@ public class ServletsUtilsTest {
 	}
 
 	/**
-	 * Test method for {@link pl.arturkb.EInvoice.Utils.ServletsUtils#replaceNullWithEmptyString(java.lang.String)}.
+	 * Test method for
+	 * {@link pl.arturkb.EInvoice.Utils.ServletsUtils#replaceNullWithEmptyString(java.lang.String)}
+	 * .
 	 */
 	@Test
 	public final void testReplaceNullWithEmptyStringEmptyString() {
 		String fixture = "";
 		assertEquals(fixture, ServletsUtils.replaceNullWithEmptyString(null));
 	}
-	
+
 	/**
-	 * Test method for {@link pl.arturkb.EInvoice.Utils.ServletsUtils#replaceNullWithEmptyString(java.lang.String)}.
+	 * Test method for
+	 * {@link pl.arturkb.EInvoice.Utils.ServletsUtils#replaceNullWithEmptyString(java.lang.String)}
+	 * .
 	 */
 	@Test
 	public final void testReplaceNullWithEmptyStringNonEmptyString() {
@@ -50,11 +63,29 @@ public class ServletsUtilsTest {
 	}
 
 	/**
-	 * Test method for {@link pl.arturkb.EInvoice.Utils.ServletsUtils#getLangMsg(javax.servlet.http.HttpServletRequest)}.
+	 * This test assert request with lang = null then should return empty 
+	 * HashMap<String, String>
+	 * Test method for
+	 * {@link pl.arturkb.EInvoice.Utils.ServletsUtils#getLangMsg(javax.servlet.http.HttpServletRequest)}
+	 * .
 	 */
 	@Test
 	public final void testGetLangMsg() {
-		fail("Not yet implemented"); // TODO
+		
+		HashMap<String, String> fixture = new HashMap<String, String>();
+		
+		HttpServletRequest request = mock(HttpServletRequest.class);
+		HttpSession session = mock(HttpSession.class);
+		
+		//Preparing session with lang = null
+		when(session.getAttribute("lang")).thenReturn(null);
+		
+		//Preparing request with session like above
+		when(request.getSession(true)).thenReturn(session);
+		
+		//now we run assert
+		assertEquals(ServletsUtils.getLangMsg(request), fixture);
+		
 	}
 
 }

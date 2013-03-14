@@ -9,5 +9,4 @@ import pl.arturkb.EInvoice.Test.Utils.ServletsUtilsTest;
 @RunWith(Suite.class)
 @SuiteClasses({ ServletsUtilsTest.class })
 public class AllTests {
-
 }
