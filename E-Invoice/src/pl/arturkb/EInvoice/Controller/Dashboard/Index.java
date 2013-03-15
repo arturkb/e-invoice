@@ -58,7 +58,7 @@ public class Index extends HttpServlet {
 		String template = "/WEB-INF/Template/mainDashboardWindow.jsp";
 
 		view.setViewAdress("/WEB-INF/Dashboard/indexView.jsp");
-		view.setTitle(lang.get("index"));
+		view.setTitle(lang.get("dashboard_index"));
 		view.setBreadcrumb( prepareBreadcrumb());
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(template);

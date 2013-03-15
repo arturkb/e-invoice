@@ -59,6 +59,10 @@ public class EnglishLang {
 		msg.put("Username", "\"Username\"");
 		msg.put("Password", "\"Password\"");
 		msg.put("change", "Change");
+		
+		//Dashboard screen
+		msg.put("dashboard_index", "Dashboard");
+		
 
 	}
 
