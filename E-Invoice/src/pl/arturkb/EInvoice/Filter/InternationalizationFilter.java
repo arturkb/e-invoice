@@ -20,7 +20,8 @@ import pl.arturkb.EInvoice.Internationalization.EnglishLang;
 
 /**
  * 
- * TODO comments
+ * This is filter for servlets without login session which
+ * take control of language for the app. 
  * 
  * Copyright 2013 Artur Barczysnki http://www.arturkb.pl
  * 
@@ -49,7 +50,6 @@ public class InternationalizationFilter implements Filter {
 	 */
 	@Override
 	public void destroy() {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -86,7 +86,6 @@ public class InternationalizationFilter implements Filter {
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		this.filterConfig = filterConfig;
-
 	}
 
 }

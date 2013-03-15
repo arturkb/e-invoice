@@ -48,7 +48,7 @@ public class InternationalizationFilterTest {
 		FilterChain chain = mock(FilterChain.class);
 		HttpSession session = mock(HttpSession.class);
 		
-		//Stubing
+		//Stubbing
 		when(session.getAttribute("lang")).thenReturn(null);
 		when(request.getSession(true)).thenReturn(session);
 		
@@ -75,7 +75,7 @@ public class InternationalizationFilterTest {
 		FilterChain chain = mock(FilterChain.class);
 		HttpSession session = mock(HttpSession.class);
 		
-		//Stubing
+		//Stubbing
 		when(session.getAttribute("lang")).thenReturn(EnglishLang.getMsg());
 		when(request.getSession(true)).thenReturn(session);
 		
