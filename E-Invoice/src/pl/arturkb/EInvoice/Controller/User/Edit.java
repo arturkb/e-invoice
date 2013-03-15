@@ -24,11 +24,13 @@ public class Edit extends HttpServlet {
 	public Edit() {
 		super();
 	}
-
+	
 	private String prepareBreadcrumb(HashMap<String, String> lang) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("<li>\n");
-		sb.append("<a href=\"/E-Invoice/dashboard/index.sec\">Home</a><span class=\"divider\">/</span>\n");
+		sb.append("<a href=\"/E-Invoice/dashboard/index.sec\">");
+		sb.append(lang.get("Dashboard.Dashboard"));
+		sb.append("</a><span class=\"divider\">/</span>\n");
 		sb.append("</li>\n");
 		sb.append("<li>\n");
 		sb.append("<a href=\"/E-Invoice/user/edit.sec\">");
@@ -47,7 +49,7 @@ public class Edit extends HttpServlet {
 		String template = "/WEB-INF/Template/mainWindow.jsp";
 
 		view.setViewAdress("/WEB-INF/User/editView.jsp");
-		view.setTitle(lang.get("index"));
+		view.setTitle(lang.get("UserEdit.Title"));
 		view.setBreadcrumb(prepareBreadcrumb(lang));
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(template);

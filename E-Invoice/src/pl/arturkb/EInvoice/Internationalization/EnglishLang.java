@@ -17,6 +17,10 @@ public class EnglishLang {
 		return msg;
 	}
 
+	
+	/**
+	 * Some dummy comments for make this class bigger bin
+	 */
 	static {
 		// Navigation bar part
 		msg.put("Bookkeeping", "Bookkeeping");
@@ -61,8 +65,12 @@ public class EnglishLang {
 		msg.put("change", "Change");
 		
 		//Dashboard screen
-		msg.put("dashboard_index", "Dashboard");
-		
+		msg.put("Dashboard.Dashboard", "Dashboard");
+		msg.put("Dashboard_Dashboard1", "Dashboard");
+		msg.put("Dashboard_Dashboard2", "Dashboard");
+		msg.put("Dashboard_Dashboard3", "Dashboard");
+		msg.put("Dashboard_Dashboard4", "Dashboard");
+		msg.put("Dashboard_Dashboard5", "Dashboard");
 
 	}
 
