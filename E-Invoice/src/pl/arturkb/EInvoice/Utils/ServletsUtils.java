@@ -91,6 +91,7 @@ public class ServletsUtils {
 	 * @param request
 	 * @return HashMap with translation
 	 */
+	@SuppressWarnings("unchecked")
 	static public HashMap<String, String> getLangMsg(HttpServletRequest request) {
 		HttpSession session = request.getSession(true);
 		if (session.getAttribute("lang") != null) {

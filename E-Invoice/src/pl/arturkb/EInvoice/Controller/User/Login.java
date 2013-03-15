@@ -55,9 +55,9 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request,
+	public void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
+
 		logger.debug("GET request for LOGIN");
 		View view = new View();
 
@@ -106,10 +106,10 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request,
+	public void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		logger.debug("POST request for LOGIN");
-		
+
 		try {
 			// Begin unit of work
 			logger.info("Hibernate begin transaction");
@@ -132,7 +132,7 @@ public class Login extends HttpServlet {
 			} else if (!user.getPassword().equals(password)) {
 				renderPage(request, response, user);
 			} else if (user.getPassword().equals(password)) {
-				HttpSession session = request.getSession(true);	
+				HttpSession session = request.getSession(true);
 				user.setAuth(true);
 				session.setAttribute("user", user);
 				response.sendRedirect("/E-Invoice/dashboard/index.sec");
@@ -150,7 +150,5 @@ public class Login extends HttpServlet {
 			}
 		}
 	}
-	
+
 }
-
-
