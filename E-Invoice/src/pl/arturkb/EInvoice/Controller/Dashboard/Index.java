@@ -45,33 +45,6 @@ public class Index extends HttpServlet {
 	public Index() {
 		super();
 	}
-
-	private String prepareBreadcrumb(HashMap<String, String> lang) {
-		StringBuilder sb = new StringBuilder();
-		sb.append("<li>\n");
-		sb.append("<a href=\"/E-Invoice/dashboard/index.sec\">");
-		sb.append(lang.get("Dashboard.Dashboard"));
-		sb.append("</a>\n");
-		sb.append("</li>\n");
-		return sb.toString();
-	}
-
-	//Render the page
-	private void renderPage(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		View view = new View();
-
-		HashMap<String, String> lang = ServletsUtils.getLangMsg(request);
-		String template = "/WEB-INF/Template/mainDashboardWindow.jsp";
-
-		view.setViewAdress("/WEB-INF/Dashboard/indexView.jsp");
-		view.setTitle(lang.get("Dashboard.Dashboard"));
-		view.setBreadcrumb(prepareBreadcrumb(lang));
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher(template);
-		request.setAttribute("view", view);
-		dispatcher.forward(request, response);
-	}
 	
 	/**
 	 * Make a HTML5 page
