@@ -55,7 +55,7 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	public void doGet(HttpServletRequest request,
+	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
 		logger.debug("GET request for LOGIN");
@@ -106,7 +106,7 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	public void doPost(HttpServletRequest request,
+	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		logger.debug("POST request for LOGIN");
 

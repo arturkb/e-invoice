@@ -10,6 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pl.arturkb.EInvoice.Beans.View;
+import pl.arturkb.EInvoice.UI.Body;
+import pl.arturkb.EInvoice.UI.Breadcrumb;
+import pl.arturkb.EInvoice.UI.BreadcrumbItem;
+import pl.arturkb.EInvoice.UI.DashboardContent;
+import pl.arturkb.EInvoice.UI.Head;
+import pl.arturkb.EInvoice.UI.Page;
 import pl.arturkb.EInvoice.Utils.ServletsUtils;
 
 /**
@@ -66,6 +72,51 @@ public class Index extends HttpServlet {
 		request.setAttribute("view", view);
 		dispatcher.forward(request, response);
 	}
+	
+	/**
+	 * Make a HTML5 page
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	private void makePage(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		
+		//Getting the language 
+		HashMap<String, String> lang = ServletsUtils.getLangMsg(request);
+		
+		//Page layout
+		Page page = new Page();
+		page.setLayout("/WEB-INF/Template/mainDashboardWindowUI.jsp");
+		
+		//Head tag for the page
+		Head head = new Head();
+		head.setTitle(lang.get("Dashboard.Dashboard"));
+		page.setHead(head);
+		
+		//Body tag for the page
+		Body body = new Body();
+		
+		//Preparing breadcrumb
+		Breadcrumb breadcrumb = new Breadcrumb();
+		BreadcrumbItem breadcrumbItem = new BreadcrumbItem();
+		breadcrumbItem.setAddress("/E-Invoice/dashboard/index.sec");
+		breadcrumbItem.setTitle(lang.get("Dashboard.Dashboard"));
+		breadcrumb.getElements().add(breadcrumbItem);
+		body.setBreadcrumb(breadcrumb);
+		
+		//Content preparing
+		DashboardContent content = new DashboardContent();
+		content.setLocation("/WEB-INF/Dashboard/indexView.jsp");
+		body.setContent(content);
+		page.setBody(body);
+		
+		//Dispatcher
+		RequestDispatcher dispatcher = request.getRequestDispatcher(page.getLayout());
+		request.setAttribute("page", page);
+		dispatcher.forward(request, response);
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -73,7 +124,7 @@ public class Index extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		renderPage(request, response);
+		makePage(request, response);
 	}
 
 	/**
